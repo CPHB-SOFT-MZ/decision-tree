@@ -13,18 +13,18 @@ public class Tree {
     }
 
     public String decide(int... args) {
-        return decide(root, args).getValue();
+        return decide(root, 0, args).getValue();
     }
 
-    private Node decide(Node root, int... args) {
+    private Node decide(Node root, int index, int... args) {
         if (root.getLeft() == null && root.getRight() == null) {
             return root;
         }
 
-        if (args[0] == 0) {
-            return decide(root.getRight(), Arrays.copyOfRange(args, 1, args.length));
+        if (args[index] == 0) {
+            return decide(root.getRight(), ++index, args);
         } else {
-            return decide(root.getLeft(), Arrays.copyOfRange(args, 1, args.length));
+            return decide(root.getLeft(), ++index, args);
         }
     }
 
